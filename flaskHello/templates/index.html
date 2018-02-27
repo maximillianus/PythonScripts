@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Flask Hello App</title>
+	<!-- <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css"> -->
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+</head>
+<body>
+	<div class="container">
+	  <div class="header">
+		<h3>Welcome to the Marathon</h3>
+		<p>May the knowledge be with you!</p>
+	  </div>
+	  <button id="normalbutton" onclick="location.href={{url_for('category')}}">next</button>
+	  <button id="ajaxbutton">Next AJAX</button>
+	</div>
+	
+</body>
+<script type="text/javascript">
+	//var username = '<%HttpContext.Current.User.Identity.Name %>';
+	//var WinNetwork = new ActiveXObject("WScript.Network");
+	//alert(username);
+	$(document).ready(function(){
+		//AJAX method #1
+		// $('button').click(function(){
+		// 	$('.container').load("{{url_for('category')}}");
+		// });
+
+		//AJAX method #2
+		$('button#ajaxbutton').click(function(){
+			$.ajax({url:"{{url_for('category')}}", success:function(result){
+				$('.container').html(result);
+			}});
+		});
+
+	});
+
+</script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Text Analysis</title>
+</head>
+<body>
+	<h1>Text Analysis Page</h1>
+	<form action="" method="POST" enctype="multipart/form-data">
+		<input type="file" name="uploaded"><br><br>
+		<input type="submit" value="Upload">
+	</form>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+			<p> {{msg}} </p>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	{% if fileurl %}
+	<hr>
+	<h2>WordCloud</h2>
+	<p>File is {{fileurl}}</p>
+	<div id="wordcloudchart" style="width:100%; height:550px;"></div> 
+	{% endif %}
+	
+
+	<script src="{{ url_for('static', filename='js/wordcloud2.js') }}"></script>
+	<script>
+		wordfreq = {{wordcloud_wordfreq|safe}};
+		var freqArr = [];
+		for (i=0 ; i < wordfreq.length; i++)
+		{
+			//console.log(wordfreq[i][1]);
+			freqArr.push(wordfreq[i][1]);
+		}
+		var maxfreq = Math.max.apply(Math, freqArr);
+		var wordsize = 1;
+		WordCloud(document.getElementById('wordcloudchart'), 
+		{list:wordfreq, 
+		fontFamily:'Calibri',
+		backgroundColor: 'white',
+		weightFactor: wordsize * 180/maxfreq,
+		clearCanvas: false});
+
+	</script>
+</body>
+</html>

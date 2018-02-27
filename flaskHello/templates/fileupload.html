@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Upload File</title>
+</head>
+<body>
+	<form action="" method="POST" enctype="multipart/form-data">
+		<input type="file" name="uploaded"><br><br>
+		<input type="submit" value="Upload">
+	</form>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+			<p> {{msg}} </p>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+
+	<!-- Display link to the file if uploaded -->
+	{% if filename %}
+		<!-- <a href="{{url_for('uploaded_file', filename=filename)}}" download>{{filename}}</a> -->
+		<br>
+		<a href="/uploads/{{filename}}" download> {{filename}} </a>
+		<hr>
+		<h3>Charts 1</h3>
+		<div id="chartdiv1" style="width:100%; height:400px;"></div>
+		
+		<hr>
+		
+	{% endif %}
+		<!-- <input type="range" min="0.1" max="1.0" value="0.8" step="0.01" class="slider" id="mySlider">
+		<p>Value: <span id="demo"></span></p>
+
+		<h3>Charts 2</h3>
+		<div id="chartdiv22" style="width:100%; height:400px;"></div>
+		<div id="legenddiv"></div> -->
+		<hr>
+		<h3>Sankey</h3>
+		<div id="sankeychart" style="width:100%; height:400px;"></div>
+		
+
+	
+
+	<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+	
+
+	<script src="{{ url_for('static', filename='js/amcharts/amcharts.js') }}"></script>
+	
+	<script src="{{ url_for('static', filename='js/amcharts/serial.js') }}"></script>
+
+	{% if toperrors or dictlist_id %}
+		<script>
+			var toperrors = {{toperrors|safe}};
+			var dictlist_id = {{dictlist_id|safe}};
+			var filename = "{{filename}}";
+			var sankeyvalue = {{sankeyvalue|safe}};
+		</script>
+		<script src="{{ url_for('static', filename='js/amcharts/amcharts-data.js') }}?t={{getTS()}}"></script>
+	{% endif %}
+	<script>$('#demo').text($('#mySlider').val());</script>
+	<script src="{{ url_for('static', filename='js/amcharts/amcharts-data2.js') }}?t={{getTS()}}"></script>
+	<script>
+		
+
+		// var slider = document.getElementById("myRange");
+		// var output = document.getElementById("demo");
+
+		// output.innerHTML = slider.value;
+		// var opacity = slider.value;
+		// slider.oninput = function() {
+		// 	output.innerHTML = this.value;
+		// 	opacity = this.value;
+		// }
+		
+	</script>
+	<script src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="{{ url_for('static', filename='js/sankey.js') }}?t={{getTS()}}"></script>
+
+</body>
+</html>

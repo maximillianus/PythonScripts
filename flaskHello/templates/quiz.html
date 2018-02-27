@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Quiz Exam</title>
+</head>
+<body>
+	<div class="container">
+	  <h3>Quiz</h3>	
+	</div>
+	<h1>Quiz App Here!</h1>
+	<p>Pyodbc version: {{ver}}</p>
+	
+	{% for row in rows %}
+	<div class="questions">
+		
+		<p>{{loop.index}}.{{row.Questions}}</p>
+		<form class="options">
+			<input class="option" type="radio" name="{{row.QuestionID}}" value=1>{{row.Choice1}}<br>
+	        <input class="option" type="radio" name="{{row.QuestionID}}" value=2>{{row.Choice2}}<br>
+	        <input class="option" type="radio" name="{{row.QuestionID}}" value=3>{{row.Choice3}}<br>
+	        <input class="option" type="radio" name="{{row.QuestionID}}" value=4>{{row.Choice4}}</br>
+		</form>
+		<br>
+		
+	</div>
+
+	{% endfor %}
+	<div class="usertime">Your Answer Time: <span class="timetaken"></span></div>
+	<br>
+	<input type="button" id='next' value="Next" onlick="sum_values()">
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Category Selection</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+</head>
+<body>
+	<div class="container">
+	  <h3>Instructions</h3>
+	  <p>Please read instructions below</p>
+	  <ul>
+	  	<li>1. Choose minimum 3 categories</li>
+	  	<li>2. Time Given is 60 minutes</li>
+	  	<li>3. Etc.</li>
+	  </ul>
+	  <h3>Select Category</h3>
+	  <form action="{{url_for('category')}}" method="GET">
+	    <fieldset id="categoryfield">
+	    <legend>Choose 3 category of interest</legend>
+		  <input class="categorycheck" type="checkbox">Python<br>
+	  	  <input class="categorycheck" type="checkbox">R<br>
+	  	  <input class="categorycheck" type="checkbox">Storage<br>
+	  	  <input class="categorycheck" type="checkbox">Cloud<br>
+	  	  <input class="categorycheck" type="checkbox">Algorithm<br>
+	  	  <input class="categorycheck" type="checkbox">Batch<br>
+	    </fieldset>
+	    <p>You selected</p>
+	  <!-- <button id="submitcategory" onclick="location.href={{url_for('quiz')}}">Start!</button> -->
+	  <button type="submit" id="normalsubmit" onclick="">Start!</button>
+	  <button type="submit" id="ajaxsubmit" onclick="">Start! (AJAX)</button>
+	  </form>
+	  
+	</div>
+
+</body>
+<script type='text/javascript'>
+	$(document).ready(function(){
+		//No more checks after 5 checkbox
+		var minlimit = 3;
+		var maxlimit = 5;
+		$('input.categorycheck').on('change', function(evt) {
+			if($(this).siblings(':checked').length >= maxlimit) {
+				this.checked = false;
+			} 
+		});
+
+		//Alert if user checks less than 3 category when submitting
+		//Using normal method
+		$('#normalsubmit').on('click', function(){
+			if($('fieldset#categoryfield').find(':checked').length < minlimit) {
+				alert("You selected less than 3 category. Please select minimum 3.");
+			} else {
+				document.location.href="{{url_for('quiz')}}";
+			}
+		});
+
+		//Alert if user checks less than 3 category when submitting
+		//Using AJAX method
+		$('#ajaxsubmit').on('click', function(){
+			if($('fieldset#categoryfield').find(':checked').length < minlimit) {
+				alert("You selected less than 3 category. Please select minimum 3.");
+			} else {
+				// $.ajax({url:"{{url_for('quiz')}}", success:function(result){
+				// $('.container').html(result);
+				// }});
+				$.get("{{url_for('category')}}", function(data, status){
+					alert("Data: " + data);
+				});
+			}
+		});
+
+	});
+	
+	
+
+</script>
+</html>

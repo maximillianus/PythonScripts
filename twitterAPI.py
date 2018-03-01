@@ -16,10 +16,12 @@ proxies = {
   'https': 'http://10.62.36.14:80',
 }
 
-api_key = 'VyawrF9rwgNIwmzpdysAKJVXg'
-api_secret = 'OSRyPLxPspQ2QLxWh3DhyCa9vFbHUxrbQCNTH1l3YBvXAXJAMk'
-token = '47151243-iLQ930rd04pdWbMHGs41XauahJnySHdzGxm91NlJ7'
-token_secret = 'XMSdUcNUeXOEwqSjnuFfAUiLx8izMi9iFGzLNJx64Xn8k'
+## Register Twitter API apps and then
+## Find out from https://apps.twitter.com/
+api_key = ''
+api_secret = ''
+token = ''
+token_secret = ''
 
 auth = OAuthHandler(api_key, api_secret)
 auth.set_access_token(token, token_secret)

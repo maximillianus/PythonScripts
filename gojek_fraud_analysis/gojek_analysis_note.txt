@@ -1,0 +1,49 @@
+## -------------------- ##
+## Gojek Fraud Analysis ##
+## -------------------- ##
+
+# Problem A : Identifying anomaly in graphs
+
+# Problem B : Detecting possible fraud in driver registration
+Questions:
+    1. Is there any anomaly in the data?
+    2. Based on your answer, state the reasons!
+
+Approach:
+    - Check the data, explore, understand.
+
+    - how do we know that there is a fraud?
+    * existence of anomaly in the defined process could mean fraud
+
+    - how do we know that there is anomaly?
+    * anomaly is irregularity in the dataset/trend/usage/pattern.
+
+    - what makes me think that there is an irregularity in a trend/usage/pattern?
+    * because I see an unusual pattern that deviates away from common/normal pattern
+
+    - how many columns and rows are there?
+    * 1037 rows & 3 columns
+    * 1037 observations with 3 variables
+
+    - what do all the columns mean?
+    * cols: Agent Name, Timestamp, DriverID
+    * each observation has unique driverID. this means that every observation is a completed registration of driver.
+    * we can call this table/data as list of completed driver registration. each registration will have its own unique driverID,
+      agent name who registers, and timestamp to indicated registration time.
+
+
+    - what is the normal process/pattern in registration process?
+    * we are trying to identify anomaly for the agents. Thus, plot the trend of agents' registration behavior
+      over time.
+    -- How many driver ID is being registered over time for each agent?
+    -- What is the common registration period for each agent?
+    -- Is there possibly erroneous entry of driverID?
+    
+    - is there any irregularity in the registration process?
+    * Check common registration pattern for each agent and compare them all
+
+
+
+
+
+

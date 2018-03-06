@@ -21,6 +21,12 @@ Approach:
     - what makes me think that there is an irregularity in a trend/usage/pattern?
     * because I see an unusual pattern that deviates away from common/normal pattern
 
+    - what is the normal process/pattern in registration process?
+    * Normal registration process can be identified after we plot pattern for each agents.
+    -- How many driver ID is being registered over time for each agent?
+    -- What is the common registration period for each agent?
+    -- Is there possibly erroneous entry of driverID?
+
     - how many columns and rows are there?
     * 1037 rows & 3 columns
     * 1037 observations with 3 variables
@@ -31,19 +37,50 @@ Approach:
     * we can call this table/data as list of completed driver registration. each registration will have its own unique driverID,
       agent name who registers, and timestamp to indicated registration time.
 
-
-    - what is the normal process/pattern in registration process?
-    * we are trying to identify anomaly for the agents. Thus, plot the trend of agents' registration behavior
-      over time.
-    -- How many driver ID is being registered over time for each agent?
-    -- What is the common registration period for each agent?
-    -- Is there possibly erroneous entry of driverID?
-    
     - is there any irregularity in the registration process?
     * Check common registration pattern for each agent and compare them all
 
+    - Visualizing irregularity:
+    * There seems to be a special pattern for fraud in this case
+    * 1. registration is done on offdays ie. weekends.
+    * 2. registration is done after work hours near midnight.
+    * 3. driverID registered has consecutive number.
+    * 4. multiple ID is registered in a very short time period (1-2secs)
 
 
+
+# Problem C : Detecting possible fraud in GO-FOOD merchant
+Questions: 
+    1. is there any frauds observed?
+    2. can elaborate any patterns of fraud?
+
+Understanding Data:
+    1. Data Shape
+    * 248 rows and 18 columns
+
+    2. what are each observations?
+    * booking data with unique booking id each
+
+    3. What are the columns/variables?
+    * booking id
+    * data date - date when data is logged? in integer, must convert
+    * booking date - when booking happens
+    * dispatch time - when driver is patched
+    * closing time - when booking is completed
+    * merchant name - 1 unique ie ABC
+    * customer id & customer name - 46 unique
+    * driver id & driver name - 39 unique
+    * shopping estimated price - 7000 - 68000
+    * origin longitude & latitude
+    * destination longitude & latitude
+    * total distance - 0.46 - 24.96km
+    * origin note - 245 known, 3 unknown
+    * destination address
+
+
+
+Investigating Questions:
+    1. Check time difference between booking date to dispatch time and dispatch time to closing time
 
 
 

@@ -82,5 +82,26 @@ Understanding Data:
 Investigating Questions:
     1. Check time difference between booking date to dispatch time and dispatch time to closing time
 
+    2. Range of data?
+    * 1 week data 3rd - 9th April, Sunday - Saturday
+
+    3. Data trend by date?
+    * There has been an unusually high volume of request on 8-9 April from 11PM to 2AM. It is possible that this is a bulk order request, or a fraud.
+
+    4. Analysis Observation 1:
+    * Unusual volume of orders in 1 day 8-9April 11PM - 2AM. Regular volume in the week is between 3 - 13 orders.
+    * All orders are completed by a single driver ie. 'HARRY' within period of 3 hours. It does not make sense to complete ~200 orders within 3 hours. That means all transactions including commute, communication, and payment are done within less than 2 minutes.
+    * Distance covered is about 24 km. Traveling for such a long distance for less than 15-20minutes using bike is unlikely.
+    * Customers who order this many amount are not ordering at any other day. There are several customers who have this behavior and they do not exhibit similar behavior in any other day.
+
+    5. Based on 4 irregular patterns above, we can conclude that there is a possible fraud identified.
+
+    6. Check on other possible frauds excluding by driver_name HARRY.
+    * does not seem to have other frauds pattern observed. 51 rows of booking observed with peak volume on 4th & 7th Apr.
+
+
+
+
+
 
 

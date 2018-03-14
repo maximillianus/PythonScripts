@@ -11,8 +11,8 @@ using MapReduce. MapReduce cycles the _mapping_ task across the clusters to
 map data into key-value pair and _reducer_ task shuffle and aggregated into a 
 complete dataset as an output.
 
-**mapreduce1.py**
+**mapreduce1.py**  
 this script explores capability of in-built map, filter, and reduce function in Python
 
-**mapreduce2.py**
+**mapreduce2.py**  
 this script implements mapReduce using sentence-tokenizing as an example without any library

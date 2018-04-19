@@ -1,0 +1,60 @@
+{% extends "sankey_base_ver2.html" %}
+{% block title %}In-Depth Page {% endblock title %}
+
+{% block body %}
+
+<!--     <h1>In-Depth Page</h1>
+    <p>This page is meant for your further reading. This page explains in more detail about 
+    the charts and algorithms that are being used in the web application. It helps user to get better understanding
+    of the visualizations that they are seeing.</p> -->
+
+    <div class="jumbotron">
+        
+          <h1 class="display-3 text-center">In-Depth Page</h1>
+          <p class="lead">This page is meant for your further reading. This page explains in more detail about 
+    the charts and algorithms that are being used in the web application. It helps user to get better understanding
+    of the visualizations that they are seeing.</p>
+        
+    </div>
+
+
+    
+    <hr>
+
+    <h2>What is Sankey?</h2>
+    <p>Sankey is a specific type of diagram to visualize the flow of 1 specific section to another. The width of the line represents the quantity or frequency of the unit flow. Sankey diagrams are named after Irish Captain Matthew Henry Phineas Riall Sankey, who used this type of diagram in 1898 to show the energy efficiency of a steam engine. For further reference, you can visit: <a href="https://en.wikipedia.org/wiki/Sankey_diagram" target="_blank">Sankey Wikipedia</a> & <a href="http://www.sankey-diagrams.com/" target="_blank">Sankey Diagrams</a> </p>
+
+    <h2>What is Apriori Algorithm?</h2>
+    <p>Apriori Algorithm is an algorithm for frequent item set mining and association rule learning over a set of data. It starts by identifying the frequent individual items and extending it to larger and larger item sets as long as those item sets appear sufficiently often in the dataset. Apriori algorithm was proposed by Agrawal and Srikant in 1994. For further reference, you can visit: <a href="https://en.wikipedia.org/wiki/Apriori_algorithm" target="_blank">Apriori Algorithm Wikipedia</a> </p>
+
+    <h2>What is <em>support</em> in Apriori Algorithm?</h2>
+    <p> Support is the fundamental aspect in Apriori Algorithm. Support of an itemset X (<sub>supp</sub>X) is the proportion of transaction in the database in which the item X appears.
+    Formula below:
+    $$ supp(X) = { \text{No. of X in all transactions} \over \text{No. of Transactions}} $$
+    Increasing the threshold of support would eliminate arbitrary itemset and let us focus on the more frequent itemsets which may hold more significance. </p> 
+
+    <h2>What is <em>confidence</em> in Apriori Algorithm?</h2>
+    <p>Confidence is the next aspect to look at in walking through the Apriori Algorithm. It is defined as follows:
+    $$ conf(X \to Y) = { supp(X \cup Y) \over supp(X)} $$
+    Confidence in Apriori algorithm signifies the likelihood of item Y appearing when item X appears. It indicates the correlation between item Y and item X. It can also be interpreted as conditional probability. The probability of discovering item Y in a transaction set that already contains item X.
+    </p>
+
+    <h2>What does my event log contain?</h2>
+    <p>Your event log contains list of services and events that are being logged to your computer from various sources be it the System itself or the Applications in your computer. Each of the services and events logged are associated with an event ID and event source. Each of these event IDs are associated with a single event type out of five available <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa363662(v=vs.85).aspx">Event Types</a>. We are particularly interested in the event IDs that are associated with Error event type as well as the number of their occurences.</p>
+
+    <h2>How we are processing the event logs?</h2>
+    <p>The raw dataset which is parsed from event logs contains a lot of information. In fact it is too many to be useful for our preliminary results. We first extract only the relevant columns such as event IDs, sources, and timing to be used in our analysis, strip the unnecessary text information, and sort it based on the timing. Then we calculate the frequency of the error events to visualize the top errors.
+    <br><br>
+    Visualizing the flow of event IDs require more complicated approach as we need to count the numbers of preceding events before the main error and collate it together to create a dataframe of event flows. Each rows of this dataframe represents a transaction set in Apriori's term. We then set out the necessary threshold for <em>support</em> to filter out arbitrary events and utilize Sankey Diagram to visualize only the most common ones.</p>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    {# <script type="text/javascript" async src="{{ url_for('static', filename='js/mathjax.js') }}">
+    </script> #}
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            displayAlign:"left"
+        });
+    </script>
+
+{% endblock body %}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Aditya Pradana">
+    <meta name="description" content="webpage to be used as an analytics service for people">
+    <title>Analytics on Web - {% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/StyleSheet1.css') }}" />
+</head>
+<body style="background-color:#b4ccdc;"">
+    <header style="height: 70px">
+      <div class="container">
+        <div class="logo">
+          <table>
+            <tr>
+              <td>
+                <img src="{{ url_for('static', filename='images/anz-logo.png') }}" alt="ANZ" >
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </header>
+
+    <hr>
+    <div class="container" style="background-color:#eef3f7">
+        {% block body %}
+        {% endblock %}
+    </div>
+    
+    <hr>
+
+    <footer id="footer">
+      <p style="font-size:14px;text-align:center; color:black; font-style:italic;">
+        <em>Powered by EPM Engineering</em>
+      </p> 
+    </footer>
+</body>
+</html>

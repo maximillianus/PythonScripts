@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Aditya Pradana">
+    <meta name="description" content="webpage to be used as an analytics service for people">
+    <title>Analytics on Web - {% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyle.css') }}" />
+ 
+    
+</head>
+<body>
+
+<!-- start navigation bar -->
+    <nav class="border navbar navbar-expand-sm navbar-dark fixed-top" style="background-color: #004D7C;">
+    <div class="container">
+      <a class="navbar-brand" href="{{url_for('sankeylanding')}}">Analytics On Web</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('sankeylanding')}}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('sankeydetail')}}">In-Depth</a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link" href="{{url_for('fileupload')}}">Application</a>
+              </li>
+            </ul>
+            <span class="navbar-text">
+            <img src="{{ url_for('static', filename='images/ANZ-logo-4.svg') }}" alt="ANZ" width="100" height=100%>
+            </span>
+        </div>
+    </div>
+    </nav>
+    <!-- end navigation bar -->
+
+    <div class="container">
+        {% block body %}
+        {% endblock %}
+    </div>
+      
+      
+      <footer class="footer text-center lead position-sticky">
+        <em>Powered by EPM Engineering</em>
+      </footer>
+      
+      
+      
+    
+    
+    <!-- Use Popper 1.12.5 -->
+    <script src="{{ url_for('static', filename='js/popper.js') }}"></script>
+    <!-- Use jQuery 1.11.1 -->
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+</html>

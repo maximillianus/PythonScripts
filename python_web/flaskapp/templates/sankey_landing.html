@@ -1,0 +1,45 @@
+
+{% extends "sankey_base_ver2.html" %}
+{% block title %}EventLog / Sankey Main Page {% endblock %}
+
+{% block body %}
+
+    <div class="jumbotron"> 
+          <h1 class="display-3 text-center">Welcome!</h1>
+          <p class="lead">Welcome to the Event Log Web Application. This application serves to help users in analyzing the event logs
+    in their computer by visualizing the statistics of that events properly. Kindly read the FAQs below to get started.</p>
+    </div>
+    
+    <hr>
+
+    <h1>5W1H</h1>
+
+    <h2>What</h2>
+    <p><em>What is this Analytics on Web?</em></p>
+    <p>Analytics on Web is a web application to help analyzing the event log in user's computer. This web application helps to
+    visualize top errors, the rates they are happening, the flow of one error events to another, etc.</p>
+
+    <h2>Who</h2>
+    <p><em>Who is the appropriate audience for this web application?</em></p>
+    <p>This application is best suited to users who want to get better idea of the error events that are happening
+    in their computer or workstation. This web application makes it easier for users to understand and analyze the root
+    cause of certain errors in their computer </p>
+
+    <h2>Why</h2>
+    <p><em>Why would I want to use this web application?</em></p>
+    <p>There are a lot of useful information that can be grasped from event logs. These logs can help us to understand better errors and services that happened in our computer thus understanding event logs can create a better computing experience for people. Unfortunately going through thousands of lines of events are not efficient amidst of hectic schedule and heavy workloads. On top of that certain data-wrangling needs to be done in order to draw only the relevant useful information. This web application does all those chores and presents you beautifully what you need to see in a single button click. </p>
+    
+    <h2>When</h2>
+    <p><em>When is it best to use this application?</em></p>
+    <p>This web application is best used when users encountered an error event (Example: Crash event) in their computer. It is best to take note the timing of that particular error event happened for cross-referencing purpose.</p>
+
+    <h2>How</h2>
+    <p><em>How is this web application being used?</em></p>
+    <p>Users will need to go to the shared folder location at <strong><u>\\10.111.240.124\Packaging$\Packages\1.New\Image\Aditya </u></strong> and copy the folder package <strong>eventlog_pkg</strong> to their own local drive.
+    Then users will need to run the batchscript <strong>eventlog_extractToCSV.bat</strong> inside that folder to extract and convert their event logs to csv-format file. Users can then upload the csv file to this web application to visualize their error events. More detailed explanation can be read from <strong>Readme_LogParser.txt</strong> file in side the eventlog_pkg folder.</p>
+
+
+    <h2>Support</h2>
+    <p>For further support, please contact us at <a href="mailto:EPMEng-AdvancedAnalytics@anz.com">Advance Analytics team</a></p>
+
+{% endblock %}

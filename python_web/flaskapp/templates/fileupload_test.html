@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>File Upload Test</title>
+</head>
+<body>
+	<form action="" method="POST" enctype="multipart/form-data">
+		<input type="file" name="uploaded"><br><br>
+		<input type="submit" value="Upload">
+	</form>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+			<p> {{msg}} </p>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+
+	<!-- Display link to the file if uploaded -->
+	{% if filename %}
+		<!-- <a href="{{url_for('uploaded_file', filename=filename)}}" download>{{filename}}</a> -->
+		<br>
+		<a href="/upload_test/{{filename}}" download> {{filename}} </a>
+		<hr>
+		
+	{% endif %}
+</body>
+</html>

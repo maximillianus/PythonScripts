@@ -13,9 +13,9 @@ to create HTTP APIs. For simplicity purpose, REST can be understood as api that
 uses RESTful urls (_get_, _post_, _put_, _delete_).
 
 ## Requirement:
-* Python 3.6.5
-* Flask 0.12.2
-* Flask-RESTful 0.3.6
+* `Python 3.6.5`
+* `Flask 0.12.2`
+* `Flask-RESTful 0.3.6`
 
 ## Notes
 this is simple code inspired from https://codeburst.io/this-is-how-easy-it-is-to-create-a-rest-api-8a25122ab1f3

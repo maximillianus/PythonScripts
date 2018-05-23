@@ -75,6 +75,7 @@ def youtube_stats(video_id, max_results=5):
     return res
 
 # 3. Getting all comments from a single video
+# refer to youtubeAPI_comments.py
 def youtube_comments():
     '''
     get the maximum number of comments in a video and return all

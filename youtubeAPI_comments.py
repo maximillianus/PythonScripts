@@ -1,6 +1,6 @@
 '''
 This script is to test and play around with youtube API
-using Python.
+using Python to scrape comments.
 
 '''
 
@@ -32,38 +32,10 @@ DEVELOPER_KEY = "AIzaSyBBHyzwTo0G-F6q3_aL59fYHshiRNS9Sow"
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
-# youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY, http=theHttp)
-youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
+youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY, http=theHttp)
+# youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
 
 
-# 1. Youtube search by keyword
-def youtube_search(keyword, max_results=5):
-    '''
-    input keyword and this function will search the keyword and returning
-    maximum top 5 results
-    '''
-    res = youtube.search().list(
-        q=keyword,
-        maxResults=max_results,
-        part='id',
-        ).execute()
-
-    # will return search result and the video id and also optional snippet
-    # snippet is the details information about video results
-    return res
-
-# 2. Getting video statistics (single and multiple query)
-def youtube_stats(keyword):
-    '''
-    get the statistics of a youtube video including likes/dislikes,
-    view counts, comment counts
-    '''
-    res = youtube.video().list(
-        id=keyword,
-        part='statistics'
-        ).execute()
-
-    return res
 
 # 3. Getting all comments from a single video
 def youtube_comments(video_id):
@@ -90,13 +62,13 @@ def youtube_comments(video_id):
             for reply in replies:
                 reply_text = reply['snippet']['textOriginal']
                 reply_author = reply['snippet']['authorDisplayName']
-                print('  Reply by %s: %s' % (reply_author, reply_text))
+                print('  -->Reply by %s: %s' % (reply_author, reply_text))
                 
 
     return res
 
 # 3.b. getting all comments for multiple comment page
-def youtube_comment_multipage(video_id, nextpage_token=None):
+def youtube_comments_multipage(video_id, nextpage_token=None):
     '''
     get the maximum number of comments in a video and return all
     the comments in text format recursively
@@ -106,7 +78,7 @@ def youtube_comment_multipage(video_id, nextpage_token=None):
         videoId=video_id,
         part='snippet',
         textFormat='plainText',
-        maxResults=20,
+        maxResults=50,
         pageToken=nextpage_token
         ).execute()
 
@@ -124,11 +96,11 @@ def youtube_comment_multipage(video_id, nextpage_token=None):
     else:
         print('recursion')
         token = res['nextPageToken']
-        commentlist.extend(youtube_comment_multipage(video_id=video_id, nextpage_token=token))
+        commentlist.extend(youtube_comments_multipage(video_id=video_id, nextpage_token=token))
         return commentlist
 
 # 3.c. getting all comments AND replies for multiple comment page
-def youtube_comment_replies_multi(video_id, nextpage_token=None):
+def youtube_comments_replies_multi(video_id, nextpage_token=None):
     '''
     get the maximum number of comments in a video and return all
     the comments in text format recursively
@@ -138,7 +110,7 @@ def youtube_comment_replies_multi(video_id, nextpage_token=None):
         videoId=video_id,
         part='snippet,replies',
         textFormat='plainText',
-        maxResults=20,
+        maxResults=100,
         pageToken=nextpage_token
         ).execute()
 
@@ -148,11 +120,11 @@ def youtube_comment_replies_multi(video_id, nextpage_token=None):
         text = comment['snippet']['textDisplay']
         authorName = comment['snippet']['authorDisplayName']
         commentID = comment['id']
-        commentlist.append(text)
-        print('Comment by %s: %s' % (authorName, text))
         totalreplycount = item['snippet']['totalReplyCount']
         print('**total reply count:', totalreplycount)
-        print('CommentID:', commentID)
+        print('**CommentID:', commentID)
+        print('Comment by %s: %s' % (authorName, text))
+        commentlist.append(text)
         if 'replies' in item:
             if totalreplycount < 6:
                 replies = item['replies']['comments']
@@ -164,44 +136,34 @@ def youtube_comment_replies_multi(video_id, nextpage_token=None):
                     print('  Reply by %s: %s' % (reply_author, reply_text))
             elif totalreplycount > 5:
                 reply_res = youtube.comments().list(parentId=commentID, part='snippet').execute()
-                print('Number of Replies:', len(reply_res['items']))
+                # print('Number of Replies:', len(reply_res['items']))
                 for item2 in reply_res['items']:
                     commentText = item2['snippet']['textOriginal']
                     commentAuthor = item2['snippet']['authorDisplayName']
                     commentlist.append(commentText)
-                    print('Reply by %s: %s' % (commentAuthor, commentText))
+                    # print('Reply by %s: %s' % (commentAuthor, commentText))
+        print('-------------------------')
     
     if 'nextPageToken' not in res:
-        print('no more recurse')
+        print('\n**** no more recurse ****\n')
         return commentlist
     else:
-        print('recursion')
+        print('\n**** recursion ****\n')
         token = res['nextPageToken']
-        commentlist.extend(youtube_comment_replies_multi(video_id=video_id, nextpage_token=token))
+        commentlist.extend(youtube_comments_replies_multi(video_id=video_id, nextpage_token=token))
         return commentlist
 
 video_id_seiko = 'lCStiGKuCw0'
 video_id_me = '5i3cuBygFU8'
 # youtube_comment_replies_multi(video_id_me)
-comments = youtube_comment_replies_multi(video_id_seiko)
+# comments = youtube_comment_replies_multi(video_id_seiko)
+comments = youtube_comments_multipage(video_id_seiko)
 # print(comments)
 print(len(comments))
 
 # sample comment ID for replies more than 5
 sample_commentID = 'UgyhS9GFtk84qRQR8C14AaABAg'
 
-
-# 4. getting all trending videos from certain countries
-
-# 5. retrieve top 10 videos by view counts
-
-# 6. get all videos from certain channel
-
-# 7. get video by categories
-
-# 8. Youtube search video by location
-
-# 9. inquire daily quota limit --> can only be done thru Dashboard
 
 
 # End script
